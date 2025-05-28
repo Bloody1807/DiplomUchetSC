@@ -1,0 +1,79 @@
+﻿<Window x:Class="DiplomUchetSC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DiplomUchetSC"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Учет сервисного центра" Height="720" Width="1280" 
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <TabControl Style="{StaticResource MaterialDesignFilledTabControl}"
+                 TabStripPlacement="Left"
+                 x:Name="MainTabControl"
+                 SelectionChanged="MainTabControl_SelectionChanged"
+                 Grid.Column="0">
+            
+            <TabItem Tag="Orders">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="120">
+                        <materialDesign:PackIcon Kind="ClipboardOutline"
+                                              Width="20" Height="20"
+                                              Margin="0 0 10 0"/>
+                        <TextBlock Text="Заказы"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem Tag="Stats">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="120">
+                        <materialDesign:PackIcon Kind="ChartTimelineVariant"
+                                              Width="20" Height="20"
+                                              Margin="0 0 10 0"/>
+                        <TextBlock Text="Статистика"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem Tag="Clients">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="120">
+                        <materialDesign:PackIcon Kind="Account"
+                                              Width="20" Height="20"
+                                              Margin="0 0 10 0"/>
+                        <TextBlock Text="Клиенты"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem Tag="Store">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="120">
+                        <materialDesign:PackIcon Kind="Warehouse"
+                                              Width="20" Height="20"
+                                              Margin="0 0 10 0"/>
+                        <TextBlock Text="Склад"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+            <TabItem Tag="Settings">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="120">
+                        <materialDesign:PackIcon Kind="Settings"
+                                  Width="20" Height="20"
+                                  Margin="0 0 10 0"/>
+                        <TextBlock Text="Настройки"/>
+                    </StackPanel>
+                </TabItem.Header>
+            </TabItem>
+        </TabControl>
+
+        <Frame x:Name="MainFrame" 
+            NavigationUIVisibility="Hidden"
+            Grid.Column="1"/>
+    </Grid>
+</Window>
