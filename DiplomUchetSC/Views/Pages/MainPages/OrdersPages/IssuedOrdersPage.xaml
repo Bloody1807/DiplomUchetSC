@@ -5,10 +5,49 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:DiplomUchetSC.Views.Pages.MainPages.OrdersPages"
       mc:Ignorable="d" 
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:converters="clr-namespace:DiplomUchetSC.Utils"
       d:DesignHeight="450" d:DesignWidth="800"
       Title="IssuedOrdersPage">
 
+    <Page.Resources>
+        <converters:EnumConverter x:Key="EnumConverter"/>
+    </Page.Resources>
+
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
+            <TextBox Width="200" 
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:HintAssist.Hint="Поиск" Margin="0 0 10 0"
+                 x:Name="SearchTextBox"
+                 TextChanged="SearchTextBox_TextChanged"/>
+        </StackPanel>
+        <DataGrid Grid.Row="1"
+              Margin="10"
+              x:Name="IssuedOrdersDataGrid"
+              AutoGenerateColumns="False"
+              IsReadOnly="True"
+              SelectionMode="Single"
+              SelectionUnit="FullRow"
+              MouseDoubleClick="IssuedOrdersDataGrid_MouseDoubleClick"
+              Style="{StaticResource MaterialDesignDataGrid}">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="№" Binding="{Binding Id }" Width="Auto"/>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding Issued_at }" Width="Auto"/>
+                <DataGridTextColumn Header="ФИО" Binding="{Binding Client.Full_name }" Width="Auto"/>
+                <DataGridTextColumn Header="Статус" Binding="{Binding OrderStatus,  Converter={StaticResource EnumConverter} }" Width="Auto"/>
+                <DataGridTextColumn Header="Тип устройства" Binding="{Binding DeviceType.Name }" Width="Auto"/>
+                <DataGridTextColumn Header="Марка" Binding="{Binding Brand.Name}" Width="Auto"/>
+                <DataGridTextColumn Header="Модель" Binding="{Binding Model}" Width="Auto"/>
+                <DataGridTextColumn Header="Неисправность" Binding="{Binding Fault}" Width="Auto"/>
+                <DataGridTextColumn Header="Окончательная стоимость" Binding="{Binding Final_cost}" Width="Auto"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

@@ -67,6 +67,7 @@ namespace DiplomUchetSC.Views.Pages.AuthPages
         private void SignUpBtn_Click(object sender, RoutedEventArgs e)
         {
             Navigation.CurrentFrame.Navigate(new RegisterPage());
+
         }
     }
 }

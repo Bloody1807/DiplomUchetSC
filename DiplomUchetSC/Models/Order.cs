@@ -23,7 +23,7 @@ namespace DiplomUchetSC.Models
         public OrderStatus OrderStatus { get; set; }
         public Guarantee Guarantee { get; set; }
         public string? Comments { get; set; }
-        public string Completed_work { get; set; }
+        public string? Completed_work { get; set; }
 
 
 

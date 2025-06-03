@@ -16,8 +16,10 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
             <TextBox Width="200" 
+                     x:Name="SearchTextBox"
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                     materialDesign:HintAssist.Hint="Поиск" Margin="0 0 10 0"/>
+                     materialDesign:HintAssist.Hint="Поиск" Margin="0 0 10 0"
+                     TextChanged="SearchTextBox_TextChanged"/>
         </StackPanel>
         <DataGrid Grid.Row="1"
                   Margin="10"

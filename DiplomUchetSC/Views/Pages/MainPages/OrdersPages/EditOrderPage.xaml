@@ -1,0 +1,127 @@
+﻿<Page x:Class="DiplomUchetSC.Views.Pages.MainPages.OrdersPages.EditOrderPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DiplomUchetSC.Views.Pages.MainPages.OrdersPages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:converters="clr-namespace:DiplomUchetSC.Utils"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="EditOrderPage"
+      Loaded="Page_Loaded">
+
+
+
+    <Page.Resources>
+        <converters:EnumConverter x:Key="EnumConverter"/>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Margin="20" Grid.Column="0">
+            <GroupBox Header="Клиент" Margin="0 0 0 10">
+                <StackPanel>
+                    <ComboBox x:Name="ClientComboBox" 
+                             materialDesign:HintAssist.Hint="ФИО клиента"
+                             SelectionChanged="ClientComboBox_SelectionChanged"
+                             IsEditable="True"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+                    <TextBox x:Name="ClientPhoneBox" 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                            materialDesign:HintAssist.Hint="Телефон"
+                            Margin="0 5 0 0"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Устройство" Margin="0 0 0 10">
+                <StackPanel>
+                    <ComboBox x:Name="DeviceTypeComboBox" 
+                             Style="{StaticResource MaterialDesignOutlinedComboBox}" 
+                             DisplayMemberPath="Name"
+                             materialDesign:HintAssist.Hint="Тип устройства"
+                             SelectionChanged="DeviceTypeComboBox_SelectionChanged"
+                             IsEditable="True"/>
+                    <ComboBox x:Name="BrandComboBox" 
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                             DisplayMemberPath="Name"
+                             materialDesign:HintAssist.Hint="Марка"
+                             Margin="0 5 0 0"
+                             IsEditable="True"/>
+                    <TextBox x:Name="ModelTextBox" 
+                            materialDesign:HintAssist.Hint="Модель"
+                            Margin="0 5 0 0"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                </StackPanel>
+            </GroupBox>
+
+            <GroupBox Header="Информация о заказе">
+                <StackPanel>
+                    <TextBox x:Name="FaultTextBox" 
+                            materialDesign:HintAssist.Hint="Неисправность"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Height="60"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                    <TextBox x:Name="PreliminaryCostTextBox" 
+                            materialDesign:HintAssist.Hint="Предварительная стоимость"
+                            Margin="0 5 0 0"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                    <TextBox x:Name="FinalCostTextBox" 
+                            materialDesign:HintAssist.Hint="Окончательная стоимость"
+                            Margin="0 5 0 0"
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                    <ComboBox x:Name="StatusComboBox"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                             materialDesign:HintAssist.Hint="Статус заказа"
+                             Margin="0 5 0 0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource EnumConverter}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </GroupBox>
+        </StackPanel>
+
+        <StackPanel Margin="20" Grid.Column="1">
+            <GroupBox Header="Дополнительно">
+                <StackPanel>
+                    <TextBox x:Name="CommentTextBox" 
+                            materialDesign:HintAssist.Hint="Комментарии"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Height="200"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                    <TextBox x:Name="CompletedWorkTextBox"
+                            materialDesign:HintAssist.Hint="Выполненные работы"
+                            AcceptsReturn="True"
+                            TextWrapping="Wrap"
+                            Height="100"
+                            Margin="0 5 0 0"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                    <ComboBox x:Name="GuaranteeComboBox"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                            materialDesign:HintAssist.Hint="Гарантия"
+                            Margin="0 5 0 0">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource EnumConverter}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                </StackPanel>
+            </GroupBox>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Right" Margin="0 20 0 0">
+                <Button Content="Сохранить" 
+                       Click="SaveButton_Click" 
+                       Style="{StaticResource MaterialDesignRaisedButton}"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

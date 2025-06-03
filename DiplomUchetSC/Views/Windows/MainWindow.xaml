@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DiplomUchetSC"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="Учет сервисного центра" Height="720" Width="1280" 
+        Title="Учет сервисного центра" Height="720" Width="1280" WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>

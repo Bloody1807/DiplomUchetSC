@@ -14,17 +14,27 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
             <TextBox Width="200" 
                  Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                 materialDesign:HintAssist.Hint="Поиск" Margin="0 0 10 0"/>
+                 materialDesign:HintAssist.Hint="Поиск" Margin="0 0 10 0"
+                 x:Name="SearchTextBox"
+                 TextChanged="SearchTextBox_TextChanged"/>
         </StackPanel>
-        <DataGrid Grid.Row="1"
-              Margin="10"
-              x:Name="WarehouseDataGrid"
-              AutoGenerateColumns="False"
-              IsReadOnly="True"
-              Style="{StaticResource MaterialDesignDataGrid}">
+        <DataGrid Margin="10"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  x:Name="WarehouseDataGrid"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  MouseDoubleClick="WarehouseDataGrid_MouseDoubleClick"
+                  Style="{StaticResource MaterialDesignDataGrid}">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Id }" Width="Auto"/>
@@ -33,5 +43,28 @@
                 <DataGridTextColumn Header="Цена" Binding="{Binding Price}" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
+        <GroupBox Header="Запчасть" Margin="0 0 0 10"
+                  Grid.Column="1"
+                  Grid.Row="1">
+            <StackPanel>
+                <TextBox x:Name="SpareTBox" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Наименование"
+                         Margin="0 5 0 0"/>
+                <TextBox x:Name="AmountTBox" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Количество"
+                         Margin="0 5 0 0"/>
+
+                <TextBox x:Name="PriceTBox" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Стоимость"
+                         Margin="0 5 0 0"/>
+                <Button Content="Сохранить" 
+                        Click="SaveButton_Click" 
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Margin="20"/>
+            </StackPanel>
+        </GroupBox>
     </Grid>
 </Page>

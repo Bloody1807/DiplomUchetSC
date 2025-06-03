@@ -27,8 +27,12 @@
                      x:Name="SearchTextBox"
                      TextChanged="SearchTextBox_TextChanged"/>
             <CheckBox Content="Принят по гарантии" IsChecked="False"
+                      x:Name="Guarantee_CheckBox"
+                      Checked="Guarantee_CheckBox_Checked"
                       Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}"/>
             <CheckBox Content="Готов" IsChecked="False"
+                      x:Name="Final_CheckBox"
+                      Checked="Final_CheckBox_Checked"
                       Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}"/>
         </StackPanel>
         <DataGrid Grid.Row="1"
@@ -38,6 +42,7 @@
                   IsReadOnly="True"
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
+                  MouseDoubleClick="CurrentOrdersDataGrid_MouseDoubleClick"
                   Style="{StaticResource MaterialDesignDataGrid}">
 
             <DataGrid.Columns>
