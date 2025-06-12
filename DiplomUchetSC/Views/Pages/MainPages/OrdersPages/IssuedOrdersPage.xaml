@@ -39,7 +39,7 @@
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Id }" Width="Auto"/>
-                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding Issued_at }" Width="Auto"/>
+                <DataGridTextColumn Header="Дата выдачи" Binding="{Binding Issued_at, StringFormat={}{0:dd.MM.yyyy HH:mm} }" Width="Auto"/>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding Client.Full_name }" Width="Auto"/>
                 <DataGridTextColumn Header="Статус" Binding="{Binding OrderStatus,  Converter={StaticResource EnumConverter} }" Width="Auto"/>
                 <DataGridTextColumn Header="Тип устройства" Binding="{Binding DeviceType.Name }" Width="Auto"/>

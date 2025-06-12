@@ -15,8 +15,6 @@ namespace DiplomUchetSC.Models
         public int Id { get; set; } 
         public string Username { get; set; }
         public string Password { get; set; }
-        public string Second_name { get; set; }
-        public string First_name { get; set; }
-        public Role Role { get; set; }
+
     }
 }

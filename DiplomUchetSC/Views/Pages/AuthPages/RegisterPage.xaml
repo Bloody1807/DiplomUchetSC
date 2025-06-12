@@ -49,17 +49,20 @@
             <TextBox Width="200" 
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:HintAssist.Hint="Фамилия" Margin="10"
-                     x:Name="SecondName"/>
+                     x:Name="SecondName"
+                     PreviewTextInput="Name_PreviewTextInput"/>
             
             <TextBox Width="200" 
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:HintAssist.Hint="Имя" Margin="10"
-                     x:Name="FirstName"/>
+                     x:Name="FirstName"
+                     PreviewTextInput="Name_PreviewTextInput"/>
             
             <TextBox Width="200" 
                      Style="{StaticResource MaterialDesignOutlinedTextBox}"
                      materialDesign:HintAssist.Hint="Номер телефона" Margin="10"
                      x:Name="PhoneNumber"
+                     PreviewTextInput="PhoneNumber_PreviewTextInput"
                      MaxLength="11"/>
             
             <TextBox Width="200" 

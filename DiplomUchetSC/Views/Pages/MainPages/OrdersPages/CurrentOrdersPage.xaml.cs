@@ -54,9 +54,8 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                 return;
             }
 
-            var filterOrders = orders.Where(o => (o.Client?.Full_name?.ToLower()?.Contains(searchText) ?? false) ||
-                (o.Client?.Number_phone?.ToLower()?.Contains(searchText) ?? false) ||
-                (o.Id.ToString().Contains(searchText)))
+            var filterOrders = orders.Where(o => (o.Client?.Full_name?.ToLower()?.Contains(searchText) ?? false) 
+            ||(o.Id.ToString().Contains(searchText)))
                 .ToList();
             CurrentOrdersDataGrid.ItemsSource = filterOrders;
         }

@@ -45,8 +45,9 @@ namespace DiplomUchetSC.Views.Pages.AuthPages
                 return;
             }
 
-            User? user = ApplicationContext.Instance.Users.FirstOrDefault(u => u.Username.Equals(login) && u.Password.Equals(password));
-
+            User? user = ApplicationContext.Instance.Users.AsEnumerable()
+                .FirstOrDefault(u => u.Username.Equals(login, StringComparison.Ordinal) 
+                && u.Password.Equals(password, StringComparison.Ordinal));
             if (user == null)
             {
                 MessageBox.Show("Неверные учётные данные!");

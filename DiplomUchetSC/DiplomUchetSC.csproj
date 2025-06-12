@@ -18,4 +18,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Views\Pages\MainPages\ActsPage\" />
+  </ItemGroup>
+
 </Project>

@@ -15,7 +15,7 @@
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0"
-                   Text="Добро пожаловать"
+                   Text="Добро пожаловать!"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    FontSize="20"/>

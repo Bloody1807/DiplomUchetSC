@@ -20,6 +20,7 @@ using System.Reflection.Metadata;
 using DiplomUchetSC.Models;
 using System.Net;
 using DiplomUchetSC.Context;
+using System.Text.RegularExpressions;
 
 
 namespace DiplomUchetSC.Views.Pages.AuthPages
@@ -66,9 +67,7 @@ namespace DiplomUchetSC.Views.Pages.AuthPages
                 {
                     Username = login,
                     Password = password, 
-                    Second_name = secondName,
-                    First_name = firstName,
-                    Role = Role.ADMIN
+
                 };
 
                 db.Users.Add(user);
@@ -78,6 +77,8 @@ namespace DiplomUchetSC.Views.Pages.AuthPages
                 {
                     Number_phone = phoneNumber,
                     Email = email,
+                    Second_name = secondName,
+                    First_name = firstName,
                     User = user
                 };
 
@@ -93,6 +94,23 @@ namespace DiplomUchetSC.Views.Pages.AuthPages
         private void BackBtn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void Name_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text, @"^[a-zA-Zа-яА-Я]+$"))
+            {
+                e.Handled = true;
+            }
+        }
+
+
+        private void PhoneNumber_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

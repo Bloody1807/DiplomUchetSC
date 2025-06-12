@@ -104,6 +104,7 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                 db.SaveChanges();
                 MessageBox.Show("Заказ сохранен");
                 NavigationService.Navigate(new CurrentOrdersPage());
+                
             }
 
         }
