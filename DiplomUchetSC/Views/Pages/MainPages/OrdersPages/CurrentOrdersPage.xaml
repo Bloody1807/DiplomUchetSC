@@ -12,6 +12,17 @@
 
     <Page.Resources>
         <converters:EnumConverter x:Key="EnumConverter"/>
+
+        <Style x:Key="OrderRowStyle" TargetType="DataGridRow">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding OrderStatus}" Value="FINISHED">
+                    <Setter Property="Background" Value="LightGreen"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding OrderStatus}" Value="GUARANTEE">
+                    <Setter Property="Background" Value="Yellow"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
 
     <Grid>
@@ -43,7 +54,8 @@
                   SelectionMode="Single"
                   SelectionUnit="FullRow"
                   MouseDoubleClick="CurrentOrdersDataGrid_MouseDoubleClick"
-                  Style="{StaticResource MaterialDesignDataGrid}">
+                  Style="{StaticResource MaterialDesignDataGrid}"
+                  RowStyle="{StaticResource OrderRowStyle}">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Id }" Width="Auto"/>
