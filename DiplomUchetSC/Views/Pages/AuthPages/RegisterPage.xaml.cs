@@ -67,7 +67,7 @@ namespace DiplomUchetSC.Views.Pages.AuthPages
                 {
                     Username = login,
                     Password = password, 
-
+                    Role = Role.DIRECTOR
                 };
 
                 db.Users.Add(user);

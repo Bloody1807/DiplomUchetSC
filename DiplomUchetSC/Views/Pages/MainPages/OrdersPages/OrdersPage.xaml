@@ -19,31 +19,31 @@
                   x:Name="OrdersTabControl"
                   SelectionChanged="OrdersTabControl_SelectionChanged"
                   Grid.Row="0">
-            <TabItem Tag="Add">
+            <TabItem Tag="Add" x:Name="Add_TabItem">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120" HorizontalAlignment="Center">
                         <materialDesign:PackIcon Kind="ClipboardPlusOutline"
-                                   Width="20" Height="20"
+                                   Width="25" Height="25"
                                    Margin="0 0 10 0"/>
                         <TextBlock Text="Добавить"/>
                     </StackPanel>
                 </TabItem.Header>
             </TabItem>
-            <TabItem Tag="Current">
+            <TabItem Tag="Current" x:Name="Current_TabItem">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120" HorizontalAlignment="Center">
                         <materialDesign:PackIcon Kind="ClipboardTextClockOutline"
-                                               Width="20" Height="20"
+                                               Width="25" Height="25"
                                                Margin="0 0 10 0"/>
                         <TextBlock Text="Текущие"/>
                     </StackPanel>
                 </TabItem.Header>
             </TabItem>
-            <TabItem Tag="Issued">
+            <TabItem Tag="Issued" x:Name="Issued_TabItem">
                 <TabItem.Header>
                     <StackPanel Orientation="Horizontal" Width="120" HorizontalAlignment="Center">
                         <materialDesign:PackIcon Kind="ClipboardCheckOutline"
-                                   Width="20" Height="20"
+                                   Width="25" Height="25"
                                    Margin="0 0 10 0"/>
                         <TextBlock Text="Выданные"/>
                     </StackPanel>

@@ -24,7 +24,7 @@ namespace DiplomUchetSC.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("Server=DESKTOP-OT7PRHS\\SQLEXPRESS;Database=ServiceCenter_db;Trusted_Connection=true;Encrypt=false");
+            optionsBuilder.UseSqlServer("Server=DESKTOP-JHDTFKK\\SQLEXPRESS;Database=ServiceCenter_db;Trusted_Connection=true;Encrypt=false");
         }
     }
 }

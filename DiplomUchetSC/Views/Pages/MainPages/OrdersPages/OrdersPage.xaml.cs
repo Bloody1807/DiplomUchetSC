@@ -21,6 +21,8 @@ namespace DiplomUchetSC.Views.Pages.MainPages
     /// </summary>
     public partial class OrdersPage : Page
     {
+        public static TabControl TabControl { get; set; }
+
         public OrdersPage()
         {
             InitializeComponent();
@@ -28,6 +30,7 @@ namespace DiplomUchetSC.Views.Pages.MainPages
             OrdersTabControl.SelectedIndex = 1;
             OrdersFrame.Navigate(new CurrentOrdersPage());
 
+            TabControl = OrdersTabControl;
         }
 
         private void OrdersTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)

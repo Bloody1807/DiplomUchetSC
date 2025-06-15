@@ -45,9 +45,14 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            bool is_current = true;
+
             using (var db = new ApplicationContext())
             {
+
                 var orderToUpdate = db.Orders.Find(_order.Id);
+
+                var oldStatus = orderToUpdate.OrderStatus;
 
                 orderToUpdate.Client = (Client)ClientComboBox.SelectedItem;
                 orderToUpdate.Client.Number_phone = ClientPhoneBox.Text;
@@ -65,12 +70,35 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                 if (orderToUpdate.OrderStatus == OrderStatus.ISSUED) 
                 {
                     orderToUpdate.Issued_at = DateTime.Now;
+                    is_current = false;
                 }
+
+                if (orderToUpdate.OrderStatus == OrderStatus.GUARANTEE && oldStatus != OrderStatus.GUARANTEE)
+                {
+                    string guaranteeNote = $"\nПринят по гарантии {DateTime.Now:dd.MM.yyyy HH:mm}";
+                    orderToUpdate.Comments = string.IsNullOrEmpty(orderToUpdate.Comments)
+                        ? guaranteeNote
+                        : orderToUpdate.Comments + guaranteeNote;
+
+                    CommentTextBox.Text = orderToUpdate.Comments;
+
+                    orderToUpdate.Is_guarantee = true;
+                }
+
 
 
                 db.SaveChanges();
                 MessageBox.Show("Сохранено");
-                NavigationService.Navigate(new CurrentOrdersPage());
+
+
+                if (is_current)
+                {
+                    OrdersPage.TabControl.SelectedIndex = 1;
+                }
+                else
+                {
+                    OrdersPage.TabControl.SelectedIndex = 2;
+                }
             }
 
 

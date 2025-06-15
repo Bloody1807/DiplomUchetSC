@@ -26,8 +26,7 @@ namespace DiplomUchetSC.Models
         public Guarantee Guarantee { get; set; }
         public string? Comments { get; set; }
         public string? Completed_work { get; set; }
-
-
+        public bool Is_guarantee { get; set; }
 
     }
 }

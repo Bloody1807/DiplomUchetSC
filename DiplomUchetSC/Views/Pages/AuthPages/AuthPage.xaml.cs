@@ -31,6 +31,16 @@ namespace DiplomUchetSC.Views.Pages.AuthPages
         public AuthPage()
         {
             InitializeComponent();
+            CheckUser();
+        }
+
+        private void CheckUser()
+        {
+            using (var db = new ApplicationContext())
+            {
+                bool usersExist = db.Users.Any();
+                SignUpBtn.IsEnabled = !usersExist;
+            }
         }
 
         private void SignInBtn_Click(object sender, RoutedEventArgs e)

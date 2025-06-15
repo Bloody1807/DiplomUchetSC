@@ -74,14 +74,45 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
             }
         }
 
+        private void Filters()
+        {
+            var filteredOrders = orders.AsEnumerable();
+
+            if (Guarantee_CheckBox.IsChecked == true)
+            {
+                filteredOrders = filteredOrders.Where(o => o.Is_guarantee);
+
+            }
+
+            if (Final_CheckBox.IsChecked == true)
+            {
+                filteredOrders = filteredOrders.Where(o => o.OrderStatus == OrderStatus.FINISHED);
+
+            }
+
+            CurrentOrdersDataGrid.ItemsSource = filteredOrders.ToList();
+        }
+
         private void Guarantee_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            
+            Filters();
+            Final_CheckBox.IsChecked = false;
         }
 
         private void Final_CheckBox_Checked(object sender, RoutedEventArgs e)
         {
+            Filters();
+            Guarantee_CheckBox.IsChecked = false;
+        }
 
+        private void Guarantee_CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Filters();
+        }
+
+        private void Final_CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Filters();
         }
     }
 }

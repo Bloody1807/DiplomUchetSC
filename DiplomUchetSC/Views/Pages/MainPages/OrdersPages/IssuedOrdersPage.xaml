@@ -8,7 +8,8 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
       xmlns:converters="clr-namespace:DiplomUchetSC.Utils"
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="IssuedOrdersPage">
+      Title="IssuedOrdersPage"
+      FontSize="16">
 
     <Page.Resources>
         <converters:EnumConverter x:Key="EnumConverter"/>
@@ -35,7 +36,8 @@
               SelectionMode="Single"
               SelectionUnit="FullRow"
               MouseDoubleClick="IssuedOrdersDataGrid_MouseDoubleClick"
-              Style="{StaticResource MaterialDesignDataGrid}">
+              Style="{StaticResource MaterialDesignDataGrid}"
+              FontSize="16">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Id }" Width="Auto"/>

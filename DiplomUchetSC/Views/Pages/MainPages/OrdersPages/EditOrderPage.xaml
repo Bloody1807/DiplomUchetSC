@@ -75,9 +75,9 @@
                             Margin="0 5 0 0"
                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                     <ComboBox x:Name="StatusComboBox"
-                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                             materialDesign:HintAssist.Hint="Статус заказа"
-                             Margin="0 5 0 0">
+                                  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                                  materialDesign:HintAssist.Hint="Статус заказа"
+                                  Margin="0 5 0 0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Converter={StaticResource EnumConverter}}"/>

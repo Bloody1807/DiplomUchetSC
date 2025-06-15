@@ -36,14 +36,12 @@
                 Click="SignInBtn_Click"
                 Margin="10"
                 Content="Войти"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"/>
 
             <Button Width="200"
                 x:Name="SignUpBtn"
                 Click="SignUpBtn_Click"
                 Content="Регистрация"
-                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                 Style="{StaticResource MaterialDesignRaisedButton}"/>
         </StackPanel>
     </Grid>

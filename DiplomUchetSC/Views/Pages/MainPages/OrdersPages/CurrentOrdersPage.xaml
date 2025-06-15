@@ -8,7 +8,8 @@
       xmlns:converters="clr-namespace:DiplomUchetSC.Utils"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="CurrentOrdersPage">
+      Title="CurrentOrdersPage"
+      FontSize="16">
 
     <Page.Resources>
         <converters:EnumConverter x:Key="EnumConverter"/>
@@ -38,12 +39,16 @@
                      x:Name="SearchTextBox"
                      TextChanged="SearchTextBox_TextChanged"/>
             <CheckBox Content="Принят по гарантии" IsChecked="False"
+                      FontSize="16"
                       x:Name="Guarantee_CheckBox"
                       Checked="Guarantee_CheckBox_Checked"
+                      Unchecked="Guarantee_CheckBox_Unchecked"
                       Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}"/>
             <CheckBox Content="Готов" IsChecked="False"
+                      FontSize="16"
                       x:Name="Final_CheckBox"
                       Checked="Final_CheckBox_Checked"
+                      Unchecked="Final_CheckBox_Unchecked" 
                       Style="{StaticResource MaterialDesignFilterChipPrimaryCheckBox}"/>
         </StackPanel>
         <DataGrid Grid.Row="1"
@@ -55,7 +60,8 @@
                   SelectionUnit="FullRow"
                   MouseDoubleClick="CurrentOrdersDataGrid_MouseDoubleClick"
                   Style="{StaticResource MaterialDesignDataGrid}"
-                  RowStyle="{StaticResource OrderRowStyle}">
+                  RowStyle="{StaticResource OrderRowStyle}"
+                  FontSize="16">
 
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Id }" Width="Auto"/>

@@ -1,0 +1,113 @@
+﻿<Page x:Class="DiplomUchetSC.Views.Pages.MainPages.SettingsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:DiplomUchetSC.Views.Pages.MainPages"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+      xmlns:converters="clr-namespace:DiplomUchetSC.Utils"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="SettingsPage"
+      FontSize="16"
+      Loaded="Page_Loaded">
+    <Page.Resources>
+        <converters:EnumConverter x:Key="EnumConverter"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="10" Grid.Row="0">
+            <TextBox Width="200" 
+                 Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                 materialDesign:HintAssist.Hint="Поиск" Margin="0 0 10 0"
+                 x:Name="SearchTextBox"
+                 TextChanged="SearchTextBox_TextChanged"/>
+        </StackPanel>
+
+        <DataGrid Margin="10"
+                  Grid.Column="0"
+                  Grid.Row="1"
+                  x:Name="EmployeesDataGrid"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  SelectionUnit="FullRow"
+                  MouseDoubleClick="EmployeesDataGrid_MouseDoubleClick"
+                  Style="{StaticResource MaterialDesignDataGrid}"
+                  FontSize="16">
+
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding User.Id}" Width="Auto"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding Second_name}" Width="*"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding First_name}" Width="*"/>
+                <DataGridTextColumn Header="Должность" Binding="{Binding User.Role, Converter={StaticResource EnumConverter}}" Width="Auto"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Number_phone}" Width="Auto"/>
+                <DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="*"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding User.Username}" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <GroupBox Header="Сотрудник" Margin="0 0 0 10"
+                  Grid.Column="1"
+                  Grid.Row="1">
+            <StackPanel>
+                <TextBox x:Name="Login" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Логин"
+                         Margin="0 5 0 0"/>
+
+                <PasswordBox x:Name="Passwordx" 
+                         Style="{StaticResource MaterialDesignOutlinedPasswordBox}"
+                         materialDesign:HintAssist.Hint="Пароль"
+                         Margin="0 5 0 0"/>
+
+                <TextBox x:Name="LastName" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Фамилия"
+                         PreviewTextInput="Name_PreviewTextInput"
+                         Margin="0 5 0 0"/>
+
+                <TextBox x:Name="FirstName" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Имя"
+                         PreviewTextInput="Name_PreviewTextInput"
+                         Margin="0 5 0 0"/>
+
+                <TextBox x:Name="Phone" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Телефон"
+                         PreviewTextInput="Phone_PreviewTextInput"
+                         Margin="0 5 0 0"/>
+
+                <TextBox x:Name="Email" 
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         materialDesign:HintAssist.Hint="Email"
+                         Margin="0 5 0 0"/>
+
+                <ComboBox x:Name="RoleComboBox"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                          materialDesign:HintAssist.Hint="Должность"
+                          Margin="0 5 0 0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource EnumConverter}}"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <Button Content="Сохранить" 
+                        Click="SaveButton_Click" 
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Margin="20"/>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</Page>

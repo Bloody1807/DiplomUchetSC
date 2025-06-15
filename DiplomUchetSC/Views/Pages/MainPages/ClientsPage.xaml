@@ -7,7 +7,8 @@
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"  
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="ClientsPage">
+      Title="ClientsPage"
+      FontSize="16">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -26,16 +27,13 @@
                   x:Name="ClientsDataGrid"
                   AutoGenerateColumns="False"
                   IsReadOnly="True"
-                  Style="{StaticResource MaterialDesignDataGrid}">
-
+                  Style="{StaticResource MaterialDesignDataGrid}"
+                  FontSize="16">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" Binding="{Binding Id }" Width="Auto"/>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding Full_name }" Width="Auto"/>
                 <DataGridTextColumn Header="Номер телефона" Binding="{Binding Number_phone}" Width="Auto"/>
-                
-               
             </DataGrid.Columns>
-
         </DataGrid>
     </Grid>
 </Page>

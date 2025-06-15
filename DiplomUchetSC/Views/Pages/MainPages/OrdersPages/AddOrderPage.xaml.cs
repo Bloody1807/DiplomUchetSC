@@ -103,7 +103,7 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                 db.Orders.Add(order);
                 db.SaveChanges();
                 MessageBox.Show("Заказ сохранен");
-                NavigationService.Navigate(new CurrentOrdersPage());
+                OrdersPage.TabControl.SelectedIndex = 1;
                 
             }
 

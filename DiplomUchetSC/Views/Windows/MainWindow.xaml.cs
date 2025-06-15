@@ -9,6 +9,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using DiplomUchetSC.Models;
 using DiplomUchetSC.Views.Pages.MainPages;
 
 namespace DiplomUchetSC
@@ -18,9 +19,11 @@ namespace DiplomUchetSC
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void MainTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,12 +44,12 @@ namespace DiplomUchetSC
                         MainFrame.Navigate(new ClientsPage());
                         break;
 
-                    case "Store":
+                    case "Warehouse":
                         MainFrame.Navigate(new WarehousePage());
                         break;
 
-                    case "Settings":
-                        MainFrame.Navigate(new SettingsPage());
+                    case "Epmloyees":
+                        MainFrame.Navigate(new EmployeesPage());
                         break;
                 }
 
