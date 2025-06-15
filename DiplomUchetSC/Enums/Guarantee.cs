@@ -16,7 +16,9 @@ namespace DiplomUchetSC.Enums
         [Display(Name = "60 Дней")]
         SIXTYDAYS,
         [Display(Name = "90 Дней")]
-        NINETYDAYS
+        NINETYDAYS,
+        [Display(Name = "Без гарантии")]
+        WITHOUTGUARANTEE
     }
 
 
