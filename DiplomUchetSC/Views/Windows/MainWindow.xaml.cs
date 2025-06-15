@@ -48,7 +48,7 @@ namespace DiplomUchetSC
                         MainFrame.Navigate(new WarehousePage());
                         break;
 
-                    case "Epmloyees":
+                    case "Employees":
                         MainFrame.Navigate(new EmployeesPage());
                         break;
                 }

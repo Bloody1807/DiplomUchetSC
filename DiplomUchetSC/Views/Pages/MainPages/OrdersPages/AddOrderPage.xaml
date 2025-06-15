@@ -25,12 +25,15 @@
                               DisplayMemberPath="Full_name"
                               materialDesign:HintAssist.Hint="ФИО клиента"
                               SelectionChanged="ClientComboBox_SelectionChanged"
-                              IsEditable="True"/>
+                              IsEditable="True"
+                              PreviewTextInput="ClientComboBox_PreviewTextInput"/>
 
                     <TextBox x:Name="ClientPhoneBox" 
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Телефон"
-                             Margin="0 5 0 0"/>
+                             Margin="0 5 0 0"
+                             MaxLength="11"
+                             PreviewTextInput="ClientPhoneBox_PreviewTextInput"/>
                 </StackPanel>
             </GroupBox>
 
@@ -41,7 +44,8 @@
                               DisplayMemberPath="Name"
                               materialDesign:HintAssist.Hint="Тип устройства"
                               SelectionChanged="DeviceTypeComboBox_SelectionChanged"
-                              IsEditable="True"/>
+                              IsEditable="True"
+                              PreviewTextInput="ClientComboBox_PreviewTextInput"/>
 
                     <ComboBox x:Name="BrandComboBox" 
                               Style="{StaticResource MaterialDesignOutlinedComboBox}"
@@ -69,7 +73,8 @@
                     <TextBox x:Name="PreliminaryCostTextBox" 
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
                              materialDesign:HintAssist.Hint="Предварительная стоимость"
-                             Margin="0 5 0 0"/>
+                             Margin="0 5 0 0"
+                             PreviewTextInput="ClientPhoneBox_PreviewTextInput"/>
 
                 </StackPanel>
             </GroupBox>

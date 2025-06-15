@@ -55,7 +55,6 @@ namespace DiplomUchetSC.Views.Pages.MainPages
 
             TodayEarnedText.Text = $"Заработано: {todayOrders.Sum(o => o.Final_cost)} руб.";
             TodayAvgCostText.Text = $"Средний чек: {(todayOrders.Any() ? todayOrders.Average(o => o.Final_cost) : 0)} руб.";
-            TodayPrepaymentText.Text = $"Предоплата: {todayOrders.Sum(o => o.Prepayment)} руб.";
 
 
         }
@@ -73,8 +72,7 @@ namespace DiplomUchetSC.Views.Pages.MainPages
             MonthGuaranteeText.Text = $"По гарантии: {monthOrders.Count(o => o.Is_guarantee)}";
 
             MonthEarnedText.Text = $"Заработано: {monthOrders.Sum(o => o.Final_cost)} руб.";
-            MonthAvgCostText.Text = $"Средний чек: {(monthOrders.Any() ? monthOrders.Average(o => o.Final_cost) : 0)} руб.";
-            MonthPrepaymentText.Text = $"Предоплата: {monthOrders.Sum(o => o.Prepayment)} руб.";
+            MonthAvgCostText.Text = $"Средний чек: {(monthOrders.Any() ? Math.Round(monthOrders.Average(o => o.Final_cost), 2) : 0)} руб.";
 
             var monthAvgRepairTime = monthOrders
                 .Where(o => o.OrderStatus == OrderStatus.ISSUED)
@@ -115,8 +113,7 @@ namespace DiplomUchetSC.Views.Pages.MainPages
             AllTimeGuaranteeText.Text = $"По гарантии: {allTimeOrders.Count(o => o.Is_guarantee)}";
 
             AllTimeEarnedText.Text = $"Заработано: {allTimeOrders.Sum(o => o.Final_cost)} руб.";
-            AllTimeAvgCostText.Text = $"Средний чек: {(allTimeOrders.Any() ? allTimeOrders.Average(o => o.Final_cost) : 0)} руб.";
-            AllTimePrepaymentText.Text = $"Предоплата: {allTimeOrders.Sum(o => o.Prepayment)} руб.";
+            AllTimeAvgCostText.Text = $"Средний чек: {(allTimeOrders.Any() ? Math.Round(allTimeOrders.Average(o => o.Final_cost), 2) : 0)} руб.";
 
             var allTimeAvgRepairTime = allTimeOrders
                 .Where(o => o.OrderStatus == OrderStatus.ISSUED)

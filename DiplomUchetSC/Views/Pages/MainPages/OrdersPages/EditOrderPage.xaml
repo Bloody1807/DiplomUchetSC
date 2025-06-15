@@ -26,14 +26,17 @@
             <GroupBox Header="Клиент" Margin="0 0 0 10">
                 <StackPanel>
                     <ComboBox x:Name="ClientComboBox" 
-                             materialDesign:HintAssist.Hint="ФИО клиента"
-                             SelectionChanged="ClientComboBox_SelectionChanged"
-                             IsEditable="True"
-                              Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+                              materialDesign:HintAssist.Hint="ФИО клиента"
+                              SelectionChanged="ClientComboBox_SelectionChanged"
+                              IsEditable="True"
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                              PreviewTextInput="ClientComboBox_PreviewTextInput"/>
                     <TextBox x:Name="ClientPhoneBox" 
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"
-                            materialDesign:HintAssist.Hint="Телефон"
-                            Margin="0 5 0 0"/>
+                             materialDesign:HintAssist.Hint="Телефон"
+                             Margin="0 5 0 0"
+                             MaxLength="11"
+                             PreviewTextInput="ClientPhoneBox_PreviewTextInput"/>
                 </StackPanel>
             </GroupBox>
 
@@ -44,6 +47,7 @@
                              DisplayMemberPath="Name"
                              materialDesign:HintAssist.Hint="Тип устройства"
                              SelectionChanged="DeviceTypeComboBox_SelectionChanged"
+                              PreviewTextInput="ClientComboBox_PreviewTextInput"
                              IsEditable="True"/>
                     <ComboBox x:Name="BrandComboBox" 
                               Style="{StaticResource MaterialDesignOutlinedComboBox}"
@@ -69,11 +73,13 @@
                     <TextBox x:Name="PreliminaryCostTextBox" 
                             materialDesign:HintAssist.Hint="Предварительная стоимость"
                             Margin="0 5 0 0"
-                            Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             PreviewTextInput="ClientPhoneBox_PreviewTextInput"/>
                     <TextBox x:Name="FinalCostTextBox" 
                             materialDesign:HintAssist.Hint="Окончательная стоимость"
                             Margin="0 5 0 0"
-                            Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                            Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             PreviewTextInput="ClientPhoneBox_PreviewTextInput"/>
                     <ComboBox x:Name="StatusComboBox"
                                   Style="{StaticResource MaterialDesignOutlinedComboBox}"
                                   materialDesign:HintAssist.Hint="Статус заказа"
@@ -92,22 +98,22 @@
             <GroupBox Header="Дополнительно">
                 <StackPanel>
                     <TextBox x:Name="CommentTextBox" 
-                            materialDesign:HintAssist.Hint="Комментарии"
-                            AcceptsReturn="True"
-                            TextWrapping="Wrap"
-                            Height="200"
+                             materialDesign:HintAssist.Hint="Комментарии"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Height="200"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                     <TextBox x:Name="CompletedWorkTextBox"
-                            materialDesign:HintAssist.Hint="Выполненные работы"
-                            AcceptsReturn="True"
-                            TextWrapping="Wrap"
-                            Height="100"
-                            Margin="0 5 0 0"
+                             materialDesign:HintAssist.Hint="Выполненные работы"
+                             AcceptsReturn="True"
+                             TextWrapping="Wrap"
+                             Height="100"
+                             Margin="0 5 0 0"
                              Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
                     <ComboBox x:Name="GuaranteeComboBox"
                               Style="{StaticResource MaterialDesignOutlinedComboBox}"
-                            materialDesign:HintAssist.Hint="Гарантия"
-                            Margin="0 5 0 0">
+                              materialDesign:HintAssist.Hint="Гарантия"
+                              Margin="0 5 0 0">
                         <ComboBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Converter={StaticResource EnumConverter}}"/>

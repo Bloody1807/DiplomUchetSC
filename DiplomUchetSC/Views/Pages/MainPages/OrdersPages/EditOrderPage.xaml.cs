@@ -1,10 +1,12 @@
 ﻿using DiplomUchetSC.Context;
 using DiplomUchetSC.Enums;
 using DiplomUchetSC.Models;
+using DiplomUchetSC.Views.Windows.Acts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -49,7 +51,6 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
 
             using (var db = new ApplicationContext())
             {
-
                 var orderToUpdate = db.Orders.Find(_order.Id);
 
                 var oldStatus = orderToUpdate.OrderStatus;
@@ -63,13 +64,18 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                 orderToUpdate.Premilinary_cost = int.Parse(PreliminaryCostTextBox.Text);
                 orderToUpdate.Final_cost = int.Parse(FinalCostTextBox.Text);
                 orderToUpdate.Comments = CommentTextBox.Text;
-                orderToUpdate.Completed_work = CompletedWorkTextBox.Text;
+                orderToUpdate.Completed_work = CompletedWorkTextBox.Text; 
                 orderToUpdate.OrderStatus = (OrderStatus)StatusComboBox.SelectedItem;
                 orderToUpdate.Guarantee = (Guarantee)GuaranteeComboBox.SelectedItem;
 
-                if (orderToUpdate.OrderStatus == OrderStatus.ISSUED) 
+                if (orderToUpdate.OrderStatus == OrderStatus.ISSUED && oldStatus != OrderStatus.ISSUED)
                 {
                     orderToUpdate.Issued_at = DateTime.Now;
+                    is_current = false;
+                }
+
+                else if (orderToUpdate.OrderStatus == OrderStatus.ISSUED)
+                {
                     is_current = false;
                 }
 
@@ -81,27 +87,70 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                         : orderToUpdate.Comments + guaranteeNote;
 
                     CommentTextBox.Text = orderToUpdate.Comments;
-
                     orderToUpdate.Is_guarantee = true;
                 }
 
+                var saveResult = MessageBox.Show("Вы хотите сохранить изменения?", 
+                                                "Редактирование", 
+                                                MessageBoxButton.YesNo,
+                                                MessageBoxImage.Question);
 
-
-                db.SaveChanges();
-                MessageBox.Show("Сохранено");
-
-
-                if (is_current)
+                if (saveResult == MessageBoxResult.Yes)
                 {
-                    OrdersPage.TabControl.SelectedIndex = 1;
+                    db.SaveChanges();
+
+                    if (orderToUpdate.OrderStatus == OrderStatus.ISSUED && oldStatus != OrderStatus.ISSUED)
+                    {
+                        var result = MessageBox.Show("Заказ сохранен. Показать акт выдачи?",
+                                                "Акт выдачи",
+                                                MessageBoxButton.YesNo,
+                                                MessageBoxImage.Question);
+
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            var actWindow = new IssuedActWindow(orderToUpdate);
+                            actWindow.Show();
+
+                            var printResult = MessageBox.Show("Распечатать акт?",
+                                                            "Печать",
+                                                            MessageBoxButton.YesNo,
+                                                            MessageBoxImage.Question);
+
+                            if (printResult == MessageBoxResult.Yes)
+                            {
+                                actWindow.PrintAct();
+                            }
+                        }
+                    }
+
+                    if (is_current)
+                    {
+                        OrdersPage.TabControl.SelectedIndex = 1;
+                        NavigationService.Navigate(new CurrentOrdersPage());
+                    }
+                    else
+                    {
+                        OrdersPage.TabControl.SelectedIndex = 2;
+                        NavigationService.Navigate(new IssuedOrdersPage());
+                    }
+
                 }
+
                 else
                 {
-                    OrdersPage.TabControl.SelectedIndex = 2;
+                    if (is_current)
+                    {
+                        OrdersPage.TabControl.SelectedIndex = 1;
+                        NavigationService.Navigate(new CurrentOrdersPage());
+                    }
+                    else
+                    {
+                        OrdersPage.TabControl.SelectedIndex = 2;
+                        NavigationService.Navigate(new IssuedOrdersPage());
+                    }
                 }
+
             }
-
-
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -149,6 +198,23 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                 FinalCostTextBox.Text = _order.Final_cost.ToString();
                
                 CommentTextBox.Text = _order.Comments;
+                CompletedWorkTextBox.Text = _order.Completed_work;
+            }
+        }
+
+        private void ClientPhoneBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ClientComboBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text, @"^[a-zA-Zа-яА-Я]+$"))
+            {
+                e.Handled = true;
             }
         }
     }

@@ -1,10 +1,12 @@
 ﻿using DiplomUchetSC.Context;
 using DiplomUchetSC.Enums;
 using DiplomUchetSC.Models;
+using DiplomUchetSC.Views.Windows.Acts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -102,7 +104,29 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                 };
                 db.Orders.Add(order);
                 db.SaveChanges();
-                MessageBox.Show("Заказ сохранен");
+
+                var result = MessageBox.Show("Заказ сохранен. Показать акт приема?",
+                              "Акт приема",
+                              MessageBoxButton.YesNo,
+                              MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    var actWindow = new AcceptActWindow(order);
+                    actWindow.Show();
+
+                    var printResult = MessageBox.Show("Распечатать акт?",
+                                                    "Печать",
+                                                    MessageBoxButton.YesNo,
+                                                    MessageBoxImage.Question);
+
+                    if (printResult == MessageBoxResult.Yes)
+                    {
+                        actWindow.PrintAct();
+                    }
+                }
+
+
                 OrdersPage.TabControl.SelectedIndex = 1;
                 
             }
@@ -131,6 +155,22 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
             ClientComboBox.ItemsSource = ApplicationContext.Instance.Clients.ToList();
             DeviceTypeComboBox.ItemsSource = ApplicationContext.Instance.DeviceTypes.ToList();
             BrandComboBox.ItemsSource = ApplicationContext.Instance.Brands.ToList();    
+        }
+
+        private void ClientComboBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Regex.IsMatch(e.Text, @"^[a-zA-Zа-яА-Я]+$"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void ClientPhoneBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

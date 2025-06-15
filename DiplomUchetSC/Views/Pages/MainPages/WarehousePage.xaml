@@ -56,16 +56,21 @@
                 <TextBox x:Name="AmountTBox" 
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Количество"
-                         Margin="0 5 0 0"/>
-
+                         Margin="0 5 0 0"
+                         PreviewTextInput="ClientPhoneBox_PreviewTextInput"/>
                 <TextBox x:Name="PriceTBox" 
                          Style="{StaticResource MaterialDesignOutlinedTextBox}"
                          materialDesign:HintAssist.Hint="Стоимость"
-                         Margin="0 5 0 0"/>
+                         Margin="0 5 0 0"
+                         PreviewTextInput="ClientPhoneBox_PreviewTextInput"/>
                 <Button Content="Сохранить" 
                         Click="SaveButton_Click" 
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Margin="20"/>
+                <Button Content="Удалить" 
+                        Click="DeleteButton_Click"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Margin="20 0"/>
             </StackPanel>
         </GroupBox>
     </Grid>

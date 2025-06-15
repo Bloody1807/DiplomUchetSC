@@ -12,9 +12,9 @@ using System.Windows.Input;
 
 namespace DiplomUchetSC.Views.Pages.MainPages
 {
-    public partial class SettingsPage : Page
+    public partial class EmployeesPage : Page
     {
-        public SettingsPage()
+        public EmployeesPage()
         {
             InitializeComponent();
 
@@ -165,7 +165,7 @@ namespace DiplomUchetSC.Views.Pages.MainPages
                     db.Personals.Add(personal);
                     db.SaveChanges();
 
-                    MessageBox.Show($"Сотрудник ({selectedRole}) добавлен успешно!");
+                    MessageBox.Show($"Сотрудник добавлен успешно!");
                 }
 
                 ClearFields();
@@ -205,6 +205,44 @@ namespace DiplomUchetSC.Views.Pages.MainPages
         {
             LoadRoles();
             LoadEmployees();
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (EmployeesDataGrid.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите сотрудника для удаления");
+                return;
+            }
+
+            var selectedEmployee = (Personal)EmployeesDataGrid.SelectedItem;
+
+            if (MessageBox.Show($"Удалить сотрудника {selectedEmployee.Second_name} {selectedEmployee.First_name}?",
+                               "Подтверждение",
+                               MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                using (var db = new ApplicationContext())
+                {
+
+                    var employee = db.Personals
+                                   .Include(p => p.User)
+                                   .FirstOrDefault(p => p.Id == selectedEmployee.Id);
+
+                    if (employee != null)
+                    {
+
+                        if (employee.User != null)
+                            db.Users.Remove(employee.User);
+
+                        db.Personals.Remove(employee);
+                        db.SaveChanges();
+
+                        MessageBox.Show("Сотрудник удален");
+                        LoadEmployees(); 
+                        ClearFields();   
+                    }
+                }
+            }
         }
     }
 }

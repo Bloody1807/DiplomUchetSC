@@ -18,9 +18,7 @@ using System.Windows.Shapes;
 
 namespace DiplomUchetSC.Views.Pages.MainPages
 {
-    /// <summary>
-    /// Логика взаимодействия для WarehousePage.xaml
-    /// </summary>
+
     public partial class WarehousePage : Page
     {
         private List<Warehouse> warehouse;
@@ -78,6 +76,7 @@ namespace DiplomUchetSC.Views.Pages.MainPages
                 db.SaveChanges();
                 MessageBox.Show("Сохранено");
                 LoadWarehouse();
+                ClearFields();
             }
         }
 
@@ -109,6 +108,47 @@ namespace DiplomUchetSC.Views.Pages.MainPages
 
 
         }
+        private void ClearFields()
+        {
+            selectedWarehouse = null;
+            SpareTBox.Clear();
+            AmountTBox.Clear();
+            PriceTBox.Clear();
+        }
 
+        private void ClientPhoneBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, 0))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedWarehouse == null)
+            {
+                MessageBox.Show("Выберите запись для удаления");
+                return;
+            }
+
+            if (MessageBox.Show($"Удалить запись: {selectedWarehouse.Name}?",
+                               "Подтверждение",
+                               MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+            {
+                using (var db = new ApplicationContext())
+                {
+                    var item = db.Warehouse.Find(selectedWarehouse.Id);
+                    if (item != null)
+                    {
+                        db.Warehouse.Remove(item);
+                        db.SaveChanges();
+                        MessageBox.Show("Запись удалена");
+                        LoadWarehouse();
+                        ClearFields();
+                    }
+                }
+            }
+        }
     }
 }
