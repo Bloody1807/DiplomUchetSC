@@ -119,6 +119,7 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
                             if (printResult == MessageBoxResult.Yes)
                             {
                                 actWindow.PrintAct();
+                                actWindow.Close();
                             }
                         }
                     }

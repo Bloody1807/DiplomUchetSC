@@ -68,7 +68,7 @@ namespace DiplomUchetSC.Views.Pages.AuthPages
 
             MessageBox.Show("Добро пожаловать!");
 
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(user);
             mainWindow.Show();
 
             Window.GetWindow(this).Close();

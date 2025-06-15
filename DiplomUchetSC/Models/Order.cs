@@ -20,7 +20,6 @@ namespace DiplomUchetSC.Models
         public string Model { get; set; }
         public string Fault { get; set; }
         public int Premilinary_cost { get; set; }
-        public int Prepayment { get; set; }
         public int Final_cost { get; set; }
         public OrderStatus OrderStatus { get; set; }
         public Guarantee Guarantee { get; set; }

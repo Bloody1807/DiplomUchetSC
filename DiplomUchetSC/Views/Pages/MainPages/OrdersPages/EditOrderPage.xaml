@@ -9,6 +9,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="EditOrderPage"
+      FontSize="16"
       Loaded="Page_Loaded">
 
 
