@@ -21,9 +21,6 @@ using DiplomUchetSC.Views.Windows;
 
 namespace DiplomUchetSC.Views.Pages.AuthPages
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthPage.xaml
-    /// </summary>
     public partial class AuthPage : Page
     {
         public static User? AuthUser { get; set; } = null;

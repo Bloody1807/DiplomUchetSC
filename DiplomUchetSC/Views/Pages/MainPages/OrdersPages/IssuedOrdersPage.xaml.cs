@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
 {
-    /// <summary>
-    /// Логика взаимодействия для IssuedOrdersPage.xaml
-    /// </summary>
     public partial class IssuedOrdersPage : Page
     {
         private List<Order> orders;

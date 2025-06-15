@@ -16,9 +16,6 @@ using DiplomUchetSC.Views.Pages.MainPages.OrdersPages;
 
 namespace DiplomUchetSC.Views.Pages.MainPages
 {
-    /// <summary>
-    /// Логика взаимодействия для OrdersPage.xaml
-    /// </summary>
     public partial class OrdersPage : Page
     {
         public static TabControl TabControl { get; set; }

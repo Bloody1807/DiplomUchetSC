@@ -25,9 +25,6 @@ using System.Text.RegularExpressions;
 
 namespace DiplomUchetSC.Views.Pages.AuthPages
 {
-    /// <summary>
-    /// Логика взаимодействия для RegisterPage.xaml
-    /// </summary>
     public partial class RegisterPage : Page
     {
         public RegisterPage()

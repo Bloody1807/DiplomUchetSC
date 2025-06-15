@@ -17,9 +17,6 @@ using DiplomUchetSC.Views.Windows;
 
 namespace DiplomUchetSC.Views.Windows
 {
-    /// <summary>
-    /// Логика взаимодействия для AuthWindow.xaml
-    /// </summary>
     public partial class AuthWindow : Window
     {
         public AuthWindow()

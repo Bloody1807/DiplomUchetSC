@@ -12,7 +12,6 @@ namespace DiplomUchetSC.Utils
     {
         public static Frame CurrentFrame { get; set; }
 
-
         public static Window Root { get; set; }
     }
 }

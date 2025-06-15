@@ -20,9 +20,6 @@ using System.Windows.Shapes;
 
 namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
 {
-    /// <summary>
-    /// Логика взаимодействия для AddOrderPage.xaml
-    /// </summary>
     public partial class AddOrderPage : Page
     {
         public AddOrderPage()

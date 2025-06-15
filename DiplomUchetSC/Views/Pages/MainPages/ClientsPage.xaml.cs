@@ -18,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace DiplomUchetSC.Views.Pages.MainPages
 {
-    /// <summary>
-    /// Логика взаимодействия для ClientsPage.xaml
-    /// </summary>
     public partial class ClientsPage : Page
     {
         List<Client> client;

@@ -15,9 +15,6 @@ using DiplomUchetSC.Models;
 
 namespace DiplomUchetSC.Views.Windows.Acts
 {
-    /// <summary>
-    /// Логика взаимодействия для AcceptActWindow.xaml
-    /// </summary>
     public partial class AcceptActWindow : Window
     {
         public AcceptActWindow(Order order)
