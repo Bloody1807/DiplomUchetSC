@@ -76,18 +76,15 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
 
         private void Filters()
         {
-            var filteredOrders = orders.AsEnumerable();
+            IEnumerable<Order> filteredOrders = orders;
 
             if (Guarantee_CheckBox.IsChecked == true)
             {
-                filteredOrders = filteredOrders.Where(o => o.Is_guarantee);
-
+                filteredOrders = orders.Where(o => o.OrderStatus == OrderStatus.GUARANTEE);
             }
-
-            if (Final_CheckBox.IsChecked == true)
+            else if (Final_CheckBox.IsChecked == true)
             {
-                filteredOrders = filteredOrders.Where(o => o.OrderStatus == OrderStatus.FINISHED);
-
+                filteredOrders = orders.Where(o => o.OrderStatus == OrderStatus.FINISHED);
             }
 
             CurrentOrdersDataGrid.ItemsSource = filteredOrders.ToList();

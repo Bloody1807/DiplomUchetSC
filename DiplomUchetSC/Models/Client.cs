@@ -13,6 +13,5 @@ namespace DiplomUchetSC.Models
         public int Id { get; set; }
         public string Full_name { get; set; }
         public string Number_phone { get; set; }
-        public bool Is_problematic { get; set; }
     }
 }

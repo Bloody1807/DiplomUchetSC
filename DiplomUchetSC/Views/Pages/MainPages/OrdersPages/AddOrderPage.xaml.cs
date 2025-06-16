@@ -136,7 +136,6 @@ namespace DiplomUchetSC.Views.Pages.MainPages.OrdersPages
 
         }
 
-
         private void ClientComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ClientComboBox.SelectedItem is Client selectedClient)
